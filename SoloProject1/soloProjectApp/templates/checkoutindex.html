@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> PayPal Smart Payment Buttons Integration </title>
+    <link rel="stylesheet" href="style.css">
+    <a href="index.html">Go to Home</a>
+   
+</head>
+
+<body>
+
+    <div id="paypal-button-container"></div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
+    <script>
+        
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '88.44'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+            }
+
+
+        }).render('#paypal-button-container');
+    </script>
+</body>
+
+    <p class="copyright">Maria del Carmen Belina Dustin © Coding Dojo 2021</p>
+
+</html>
+    

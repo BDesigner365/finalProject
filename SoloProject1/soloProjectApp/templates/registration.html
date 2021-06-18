@@ -1,0 +1,40 @@
+<div class = 'registration' id='registration'>
+    <h2> Registration </h2>
+    <form action = '/newUser/' method='POST'>
+        {% csrf_token %}
+    <div class='form'>
+        <label class='username' for='username'> Username </label>
+        <input name='username' id='username' class='form-control'>
+    </div>    
+    <div class='form'>
+        <label class='first_name' for='first_name'> First Name </label>
+        <input name='first_name' id='first_name' class='form-control'>
+    </div>
+    <div class='form'>
+        <label class='last_name' for='last_name'> Last Name </label>
+        <input name='last_name' id='last_name' class='form-control'>
+    </div>
+    <div class='form'>
+        <label class='email' for='email'> Email </label>
+        <input name='email' id='email' type='email' class='form-control'>
+    </div>
+    <div class='form'>
+        <label class='password' for='password'> Password </label>
+        <input name='password' id='password' type='password' class='form-control'>
+    </div>
+    <div class='form'>
+        <label class='confirm_pw' for='confirm_pw'> Confirm Password </label>
+        <input name='confirm_pw' id='confirm_pw' type='password' class='form-control'>
+    </div>
+</div>
+
+    <div class='regbtn'>
+    <button class='btn' id='regbtn' type='submit'> Submit </button></div>
+</form>
+{% if messages %}
+<section class='messages'>
+    {% for message in messages %}
+    <h4 {% if message.tags %} class='{{ message.tags }}'{% endif %}>{{ message }}</h4>
+    {% endfor %}
+</section>
+{% endif %}

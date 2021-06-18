@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Solo Project Navigation Bar with Login Form</title>
+        <link rel="stylesheet" href="style.css">
+        <a href="/newUser/">Register</a>
+        <a href="/editProfile/">Edit Profile</a>
+
+        <form class="form-inline" action="/login/" method="post">
+            {% csrf_token %}   
+            <input class="form-control" type="text" placeholder="Username" name="username" id="username">
+            <input class="form-control" type="password" id="password" placeholder="Password" name="password">
+            <button type="submit">Login</button>       
+    </form>
+
+    </head>
+    <body>
+        <div class="topnav">
+            
+            <a class="active" href="/">Home </a>
+
+            <a href="logo.mp4" title="Download movie">BellinaD'Studio</a>
+            <a href="coupon.html" title="Coupons"> Coupons</a>
+            <a href="#username">Blog</a>
+            <a href="#username"> Computers</a> 
+            <a href="#username">username</a>
+            <a href="#contact">Contact</a>
+            <a href='/logout/'> Logout </a>
+        </div>
+
+                <p><h1> Welcome to Ovni Mall </h1></p>
+                <div id="logo"> 
+                    <img src="{% static 'emails/logo.png' %}" id="logo" class='center'/>
+                </div>
+                <div class="login-container">
+                    
+            </div>
+
+<div class = 'createProfile' id='createProfile'>
+    <h2> Edit {{user.username}}'s' Profile </h2>
+
+        <form action = '/editProfile/{{user.id}}/updateProfile' method='POST' enctype='multipart/form-data'>
+            {% csrf_token %}
+        <section>
+            <label for='first_name'> First Name </label>
+            <input type='first_name' name='first_name' id='first_name' value='{{user.first_name}}'>
+        </section>
+        <section>
+            <label for='last_name'> last_name : </label>
+            <input type='text' name='last_name' id='last_name' value='{{user.last_name}}'>
+        </section>
+        <section>
+            <label for='username'> username: </label>
+            <input type='text' name='username' id='username' value='{{user.username}}'>
+        </section>
+        <section>
+            <label for='email'> Email: </label>
+            <input name='email' id='email' type='text' class='form-control' value='{{user.username}}'>
+        </section>
+        </div>
+        <button id='btn' type='submit'> Update </button>
+    </form>
+</div>
+</body>
+</html>
